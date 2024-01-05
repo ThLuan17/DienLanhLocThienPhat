@@ -32,6 +32,7 @@ ul {
 }
 
 img {
+    height: auto;
     max-width: 100%;
     vertical-align: middle;
 }
@@ -70,10 +71,12 @@ p {
 /* NavBar */
 
 nav {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
-    overflow: hidden;
+    right: 0;
+    z-index: 99;
+    background-color: #fff;
 }
 
 nav .brand-logo {
@@ -214,11 +217,15 @@ nav .nav-menu .menu-toggle {
     float: right;
 }
 
-.menu-nav li {
+.menu-nav .menu-item {
     position: relative;
 }
 
-.menu-nav li:not(:first-child) {
+.menu-nav i {
+    color: #008adb;
+}
+
+.menu-nav .menu-item:not(:first-child) {
     margin-left: 2.6rem;
 }
 
@@ -230,6 +237,152 @@ nav .nav-menu .menu-toggle {
     font-weight: 300;
     text-transform: uppercase;
 }
+
+/* Dropdown */
+.dropdown-menu.sm{
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    padding: 10px;
+    min-width: 350px;
+    background-color: #fff;
+    border-top: 2px solid #008adb;
+    border-radius:0 0 .4rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0);
+}
+
+.menu-nav .menu-item:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.dropdown-menu.sm li {
+    position: relative;
+    margin: 0;
+}
+
+.dropdown-menu.sm li:not(:last-child) {
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #008adb;
+}
+
+.dropdown-menu.sm a {
+    display: block;
+    text-transform: none;
+    padding: 10px 20px;
+    padding-left: 0;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Sub-menu */
+.dropdown-menu.sm .sub-menu {
+    visibility: hidden;
+    position: absolute;
+    top: 0%;
+    right: 100%;
+    z-index: 999;
+    padding: 10px;
+    min-width: 200px;
+    background-color: #fff;
+    border-top: 2px solid #008adb;
+    border-radius: 0 0 0 .4rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0)
+    translateX(-5%);
+}
+
+.dropdown-menu.sm li:hover .sub-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1)
+    translateX(0%)
+    translateY(-5%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.dropdown-menu.sm .sub-menu li {
+    position: relative;
+    margin: 0;
+}
+
+.dropdown-menu.sm .sub-menu li:not(:last-child) {
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #008adb;
+}
+
+.dropdown-menu.sm .sub-menu a {
+    display: block;
+    text-transform: none;
+    padding: 10px 20px;
+    padding-left: 0;
+    color: #333;
+    text-decoration: none;
+}
+
+
+/* Mega Dropdown Menu */
+.mega-dropdown .dropdown-menu {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    padding: 10px;
+    min-width: 700px;
+    background-color: #fff;
+    border-top: 2px solid #008adb;
+    border-radius:0 0 .4rem .4rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0);
+}
+
+.mega-dropdown:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.mega-dropdown .dropdown-menu h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.mega-dropdown .dropdown-menu li {
+    position: relative;
+    margin: 0;
+}
+
+.mega-dropdown .dropdown-menu li:hover > .dropdown-menu {
+    display: block;
+}
+
+.mega-dropdown .dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    padding-left: 0;
+    color: #333;
+    text-decoration: none;
+}
+
+.mega-dropdown .dropdown-menu a:hover {
+    background-color: #f5f5f5;
+}
+
 
 /* Section commit */
 
@@ -450,11 +603,13 @@ nav .nav-menu .menu-toggle {
 }
 
 .why-choose-item .inner {
-    width: 100%;
+    height: 100%;
+    position: relative;
     overflow: hidden;
 }
 
 .why-choose-item img {
+    height: 100%;
     transform: scale(1.1);
     transition: all ease .3s;
 }
@@ -691,6 +846,11 @@ nav .nav-menu .menu-toggle {
     overflow: hidden;
 }
 
+.section-news .news-item .inner .more-link {
+    text-align: end;
+    margin-right: 3rem;
+}
+
 .section-news .news-item .inner .more-link a {
     font-size: 1rem;
     font-weight: 700;
@@ -728,6 +888,10 @@ nav .nav-menu .menu-toggle {
     margin-bottom: 10px;
 }
 
+.side-nav ul li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
 .side-nav ul li a {
     display: flex;
     align-items: center;
@@ -741,17 +905,31 @@ nav .nav-menu .menu-toggle {
     background-color: #ddd;
 }
 
-.side-nav .sub-side-nav {
+.side-nav .side-nav-dropdown {
     margin-left: 20px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.6s ease-in-out;
+    transition: max-height 0.4s ease-in-out;
 }
 
-.sub-side-nav.active {
+.side-nav-dropdown.active {
     display: block; /* shown when active */
     max-height: 200px;
 }
+
+/* sub-side-nav-dropdown */
+.sub-side-nav-dropdown {
+    margin-left: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+.sub-side-nav-dropdown.active {
+    display: block; /* shown when active */
+    max-height: 200px;
+}
+
 
 /* modal */
 
@@ -764,36 +942,67 @@ nav .nav-menu .menu-toggle {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: hidden; /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
 }
 
 /* Modal Content */
 #modal-appointment .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* 80% width */
+    width: 70%; /* 80% width */
 }
 
 #modal-appointment h2 {
-    font-size: 2rem;
+    position: relative;
+    font-size: 1.5rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
 }
 
+#modal-appointment h2::after {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    content: "";
+    display: block;
+    width: 300px;
+    height: 100px;
+    background-color: #009deb;
+    transform:
+        translateY(-90%)
+        translateX(-50%)
+        perspective(80em)
+        rotateX(-40deg);
+    }
+
 /* Close Button */
+#modal-appointment .close-modal-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
 #modal-appointment #close-modal {
-    color: #aaa;
+    position: relative;
+    display: block;
+    justify-content: flex-end;
+    color: #fff;
+    background-color: #008adb;
     font-size: 28px;
     font-weight: bold;
+    padding: .5rem 1rem;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    z-index: 2;
 }
 
 #modal-appointment #close-modal:hover,
 #modal-appointment #close-modal:focus {
-    color: black;
+    filter: brightness(1.2);
     text-decoration: none;
     cursor: pointer;
 }
@@ -805,8 +1014,18 @@ nav .nav-menu .menu-toggle {
 }
 
 #modal-appointment form label {
-    font-size: 1.2rem;
-    font-weight: 700;
+    display: block;
+    font-size: 1rem;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    padding: 1rem 1.5rem;
+    border-radius: 50%;
+    background: linear-gradient(0deg, rgba(221,221,221,1) 0%, rgba(215,228,228,1) 100%);
+    border: 1px solid #fff;
+    margin: 0 auto;
+    box-shadow: 15px 8px 24px -21px rgba(0,0,0,0.75);
+    cursor: pointer;
 }
 
 #modal-appointment form input {
@@ -821,17 +1040,22 @@ nav .nav-menu .menu-toggle {
     display: none;
 }
 
-#modal-appointment form input[type=checkbox]:checked + label {
+#modal-appointment form input[type="checkbox"]:checked + label {
+    background: linear-gradient(0deg, rgba(0,138,189,1) 0%, rgba(141,170,190,1) 100%); /* change to your preferred color */
 }
 
-.tick-icon::before {
-    content: "\f00c"; /* Font Awesome tick icon */
-    font-family: "Font Awesome 5 Free";
-    display: none;
-}
+#modal-appointment form button[type="submit"] {
+    background-color: #009deb;
+    color: #fff;
+    width: 200px;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
 
-input[type="checkbox"]:checked + label .tick-icon::before {
-    display: inline;
 }
 
 #modal-appointment form textarea {
@@ -1022,18 +1246,41 @@ footer .footer-foot {
 }
 
 .bubble-appointment .btn {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #e03d3d;
     color: #fff;
+    fill: #fff;
     font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-bottom: 1rem;
+    outline: none;
+    border: none;
+}
+
+.bubble-appointment .btn::after {
+    content: "Đặt lịch Hẹn";
+    text-wrap: nowrap;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(0%, -50%);
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    display: none;
+}
+
+.bubble-appointment .btn:hover::after {
+    display: block;
 }
 
 .bubble-appointment .btn:hover {
@@ -1048,7 +1295,7 @@ footer .footer-foot {
 
 /* Responsive */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767.9px) {
 
     nav .nav-menu {
         display: flex;
@@ -1107,6 +1354,10 @@ footer .footer-foot {
 
     .section-news .news-item {
         margin-bottom: 2rem;
+    }
+
+    #modal-appointment .modal-content {
+        width: 95%;
     }
 
     footer .footer-phone li {
@@ -1173,6 +1424,10 @@ footer .footer-foot {
 
     .section-news .news-item {
         margin-bottom: 2rem;
+    }
+
+    #modal-appointment .modal-content {
+        width: 95%;
     }
 
     footer .footer-phone li {
