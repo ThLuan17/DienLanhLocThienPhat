@@ -400,8 +400,9 @@ nav .nav-menu .menu-toggle {
     border: 1px solid #8edaff;
     border-radius: 100%;
     left: 50%;
-    top: 84%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translateX(-50%)
+    translateY(38%);
 }
 
 /* Heading */
